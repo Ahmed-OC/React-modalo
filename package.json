@@ -1,6 +1,6 @@
 {
   "name": "react-modalou",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "fully customizable react modal component",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
