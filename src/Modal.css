@@ -1,0 +1,25 @@
+.modal * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .modal-content-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+  .modal-content-title button {
+    background-color: transparent;
+    border: none;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+  }
+  .modal-content-title button:hover {
+    color: gray;
+  }
