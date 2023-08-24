@@ -15,6 +15,11 @@ This component has the following props:
 - `contentStyle`: Optional CSS styles for the modal content.
 - `close`: A function that closes the modal.
 - `title`: An optional title for the modal.
+- `CloseIcon`: An optional close icon for the modal.
+- `closeStyle`: Optional CSS styles that will be applied to the close button of the modal.
+- `closeOnEsc`: Whether or not the modal should close when the escape key is pressed.
+- `closeOnOverlayClick`: Whether or not the modal should close when the overlay is clicked.
+- `titleStyle`: Optional CSS styles that will be applied to the title of the modal.
 
 Here is an example of how to use this component:
 
@@ -50,3 +55,8 @@ export default App;
 | contentStyle | React.CSSProperties | Optional CSS styles for the modal content. |
 | close | () => void | A function that closes the modal. |
 | title | string | An optional title for the modal. |
+| CloseIcon | React.ReactNode | An optional close icon for the modal. |
+| closeStyle | React.CSSProperties | Optional CSS styles that will be applied to the close button of the modal. |
+| closeOnEsc | boolean | Whether or not the modal should close when the escape key is pressed. |
+| closeOnOverlayClick | boolean | Whether or not the modal should close when the overlay is clicked. |
+| titleStyle | React.CSSProperties | Optional CSS styles that will be applied to the title of the modal. |
