@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import "./Modal.css";
 
 interface ModalProps {
@@ -9,6 +9,11 @@ interface ModalProps {
   contentStyle?: React.CSSProperties;
   close: () => void;
   title?: string;
+  closeOnOverlayClick?: boolean;
+  closeOnEsc?: boolean;
+  CloseIcon?: React.ReactNode;
+  titleStyle?: React.CSSProperties;
+  closeStyle?: React.CSSProperties;
 }
 const Modal : React.FC<ModalProps> = ({
   children,
@@ -17,6 +22,11 @@ const Modal : React.FC<ModalProps> = ({
   contentStyle,
   close,
   title,
+  closeOnOverlayClick = true,
+  closeOnEsc = true,
+  CloseIcon,
+  titleStyle,
+  closeStyle,
 }) => {
   const defaultModalStyle: React.CSSProperties = {
     position: "fixed",
@@ -41,9 +51,26 @@ const Modal : React.FC<ModalProps> = ({
     ...defaultModalContentStyle,
     ...contentStyle,
   };
+
+  useEffect(() => {
+    if (closeOnEsc) {
+      const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === "Escape") {
+          close();
+        }
+      };
+      window.addEventListener("keydown", handleEsc);
+      return () => {
+        window.removeEventListener("keydown", handleEsc);
+      };
+    }
+    return;
+  }, [close, closeOnEsc]);
+
+
   return createPortal(
     isOpen ? (
-      <div className="modal" style={mergedModalStyle} onClick={close}>
+      <div className="modal" style={mergedModalStyle} onClick={closeOnOverlayClick ? close : undefined}>
         <div
           className="modal-content"
           style={mergedModalContentStyle}
@@ -51,26 +78,43 @@ const Modal : React.FC<ModalProps> = ({
         >
           <div>
             {!!title && (
-              <div className="modal-content-title">
+              <div className="modal-content-title" 
+              style={titleStyle}
+              >
                 <h2>{title}</h2>
               </div>
             )}
             <button
               className="modal-content-close"
               onClick={close}
+              style={closeStyle}
             >
-              <span
-                aria-hidden="true"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                &times;
-              </span>
+              {CloseIcon ? (
+                CloseIcon
+              ) : (
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  style={{ display: "block" }}
+                >
+                  <path
+                    d="M18 6L6 18"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M6 6L18 18"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
             </button>
             {children}
           </div>

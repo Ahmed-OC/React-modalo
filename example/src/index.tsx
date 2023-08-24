@@ -12,7 +12,13 @@ const App = () => {
     <div>
       <button onClick={() => setIsOpen(true)}>open</button>
       <div id="test">
-        <Modal title="test" isOpen={isOpen} close={() => setIsOpen(false)}>
+        <Modal title="test" isOpen={isOpen} close={() => setIsOpen(false)} 
+          closeOnOverlayClick={false}
+          modalStyle={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+          contentStyle={{ backgroundColor: "#fff" }}
+          titleStyle={{ color: "red" }}
+          closeStyle={{ color: "blue" }}
+        >
           <p>test react-modalou</p>
         </Modal>
       </div>
