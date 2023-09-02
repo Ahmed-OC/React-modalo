@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:esm && npm run build:cjs",
     "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs"
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "docs": "jsdoc -c jsdoc.conf.json"
   },
   "keywords": [
     "react",
@@ -25,6 +26,8 @@
     "@types/react-dom": "^18.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "better-docs": "^2.7.2",
+    "jsdoc": "^4.0.2",
     "tslib": "^2.6.0",
     "typescript": "^5.1.6"
   },
